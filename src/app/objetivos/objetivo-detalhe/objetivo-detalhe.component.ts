@@ -1,6 +1,6 @@
 import { ObjetivosService } from './../objetivos.service';
 import { Component, OnInit } from '@angular/core';
-import { Objetivo } from '../objetivo';
+import { Objetivo } from '../../model/objetivo';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 

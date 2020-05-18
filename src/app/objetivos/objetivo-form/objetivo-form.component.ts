@@ -1,7 +1,7 @@
 import { ObjetivosService } from './../objetivos.service';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
-import { Objetivo } from './../objetivo';
+import { Objetivo } from '../../model/objetivo';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

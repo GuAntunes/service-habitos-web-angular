@@ -1,5 +1,6 @@
+import { AuthGuard } from './guards/auth.guard';
+import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
-import { ObjetivosComponent } from './objetivos/objetivos.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -7,15 +8,16 @@ const APP_ROUTES: Routes = [
     {
         path: 'objetivos',
         loadChildren: () => import('./objetivos/objetivos.module').then(o => o.ObjetivosModule),
-        // canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         // canActivateChild: [CursosGuard],
-        // canLoad: [AuthGuard]
+        canLoad: [AuthGuard]
     },
     {
         path: 'home',
         component: HomeComponent,
-        // canActivate: [AuthGuard]
+        canActivate: [AuthGuard]
     },
+    { path: 'login', component: LoginComponent },
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     // { path: '**', component: PaginaNaoEncontradaComponent, canActivate: [AuthGuard] }
 ];

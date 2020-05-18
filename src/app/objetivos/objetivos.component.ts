@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
-import { Objetivo } from './objetivo';
+import { Objetivo } from '../model/objetivo';
 import { ObjetivosService } from './objetivos.service';
 
 @Component({

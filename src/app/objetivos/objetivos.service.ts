@@ -1,4 +1,4 @@
-import { Objetivo } from './objetivo';
+import { Objetivo } from '../model/objetivo';
 import { Injectable } from '@angular/core';
 
 @Injectable({
