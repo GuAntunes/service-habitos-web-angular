@@ -1,4 +1,8 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+
+import { Objetivo } from './objetivo';
+import { ObjetivosService } from './objetivos.service';
 
 @Component({
   selector: 'app-objetivos',
@@ -7,9 +11,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ObjetivosComponent implements OnInit {
 
-  constructor() { }
+  objetivos: Objetivo[];
+
+  constructor(private objetivosService: ObjetivosService,
+    private router: Router,) { }
 
   ngOnInit(): void {
+    this.objetivos = this.objetivosService.getObjetivos();
   }
-
+  
 }
