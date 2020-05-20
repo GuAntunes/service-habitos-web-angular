@@ -10,7 +10,14 @@ export class ObjetivosService {
     {
       id: 1,
       nome: 'Ser um especialista em microservices',
-      descricao: 'Aprender com cursos online e presenciais a programar com microserviços'
+      descricao: 'Aprender com cursos online e presenciais a programar com microserviços',
+      metas: [
+        {
+          id: 1,
+          nome: 'Meta 01',
+          descricao: 'Fazer Cursos Online',
+        }
+      ]
     },
     {
       id: 2,

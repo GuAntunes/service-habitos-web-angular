@@ -1,3 +1,4 @@
+import { ObjetivosComponent } from './objetivos.component';
 import { ObjetivosRoutingModule } from './objetivos.routing.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -8,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [ObjetivoDetalheComponent, ObjetivoFormComponent],
+  declarations: [ObjetivoDetalheComponent, ObjetivoFormComponent, ObjetivosComponent],
   imports: [
     CommonModule,
     ObjetivosRoutingModule,

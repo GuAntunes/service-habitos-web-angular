@@ -29,7 +29,11 @@ export class ObjetivoDetalheComponent implements OnInit {
   }
 
   editarObjetivo(){
-    this.router.navigate(['/objetivos', this.objetivo.id, 'editar'])
+    this.router.navigate(['/objetivos', this.objetivo.id, 'editar']);
+  }
+
+  carregarMetas(){
+    this.router.navigate(['/metas/objetivo/', this.objetivo.id]);
   }
 
 }

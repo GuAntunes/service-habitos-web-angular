@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
-import { ObjetivosComponent } from './objetivos/objetivos.component';
 import { AppRoutingModule } from './app.routing.module';
 import { AuthGuard } from './guards/auth.guard';
 import { AuthService } from './login/auth.service';
@@ -15,7 +14,6 @@ import { AuthService } from './login/auth.service';
     AppComponent,
     LoginComponent,
     HomeComponent,
-    ObjetivosComponent
   ],
   imports: [
     BrowserModule,

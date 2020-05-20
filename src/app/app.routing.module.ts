@@ -13,6 +13,13 @@ const APP_ROUTES: Routes = [
         canLoad: [AuthGuard]
     },
     {
+        path: 'metas',
+        loadChildren: () => import('./metas/metas.module').then(m => m.MetasModule),
+        canActivate: [AuthGuard],
+        // canActivateChild: [CursosGuard],
+        canLoad: [AuthGuard]
+    },
+    {
         path: 'home',
         component: HomeComponent,
         canActivate: [AuthGuard]
