@@ -1,3 +1,4 @@
+import { MetasService } from './../metas/metas.service';
 import { Objetivo } from '../model/objetivo';
 import { Injectable } from '@angular/core';
 
@@ -11,13 +12,7 @@ export class ObjetivosService {
       id: 1,
       nome: 'Ser um especialista em microservices',
       descricao: 'Aprender com cursos online e presenciais a programar com microserviços',
-      metas: [
-        {
-          id: 1,
-          nome: 'Meta 01',
-          descricao: 'Fazer Cursos Online',
-        }
-      ]
+      metas: this.metasService.getMetas(1)
     },
     {
       id: 2,
@@ -26,7 +21,7 @@ export class ObjetivosService {
     }
   ];
 
-  constructor() { }
+  constructor(private metasService: MetasService) { }
 
   getObjetivos(): Objetivo[] {
     return this.objetivos;

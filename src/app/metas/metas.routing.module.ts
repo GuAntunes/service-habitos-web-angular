@@ -1,20 +1,29 @@
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 
+import { MetaFormComponent } from './meta-form/meta-form.component';
+import { MetaDetalheComponent } from './meta-detalhe/meta-detalhe.component';
 import { MetasComponent } from './metas.component';
 
 const METAS_ROUTES: Routes = [
     {
         path: '',
         children: [
-            { path: 'objetivo/:id', component: MetasComponent },
-            // { path: 'novo', component: ObjetivoFormComponent },
-            // {
-            //     path: ':id', component: ObjetivoDetalheComponent
-            // },
-            // {
-            //     path: ':id/editar', component: ObjetivoFormComponent
-            // }
+            {
+                path: 'objetivo/:id', component: MetasComponent,
+                children: [
+                    {
+                        path: 'meta/:meta', component: MetaDetalheComponent
+                    },
+                    {
+                        path: 'meta/:meta/editar', component: MetaFormComponent
+                    },
+                    { path: 'novo', component: MetaFormComponent }
+                ]
+            },
+            {
+                path: ':id', component: MetaDetalheComponent
+            }
         ]
     },
 ];

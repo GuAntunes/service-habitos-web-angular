@@ -1,3 +1,4 @@
+import { Objetivo } from './objetivo';
 export class Meta {
 
     public id?: number;
@@ -5,6 +6,7 @@ export class Meta {
     public descricao?: string;
     public dataInicio?: string;
     public dataConclusao?: string;
+    public objetivo: number;
 
     constructor() { }
 }

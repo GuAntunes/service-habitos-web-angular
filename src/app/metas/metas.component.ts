@@ -14,6 +14,7 @@ export class MetasComponent implements OnInit {
 
   objetivo: Objetivo;
   inscricao: Subscription;
+  submenu: boolean;
 
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -28,5 +29,10 @@ export class MetasComponent implements OnInit {
 
         }
       );
+  }
+
+  carregarMeta(metaId, objetivoId){
+    this.router.navigate(['/metas/objetivo/', objetivoId, 'meta', metaId, 'editar']);
+    this.submenu = true;
   }
 }

@@ -10,23 +10,31 @@ export class MetasService {
   private metas: Meta[] = [
     {
       id: 1,
-      nome: 'Ser um especialista em microservices',
-      descricao: 'Aprender com cursos online e presenciais a programar com microserviços'
+      nome: 'Realizar um curso na Udemy',
+      descricao: 'Realizar o curso X',
+      objetivo: 1
     },
     {
       id: 2,
-      nome: 'Aprender um idioma',
-      descricao: 'Ser capaz de entender e falar um idioma estrangeiro'
+      nome: 'Realizar um curso presencial na Caelum',
+      descricao: 'Realizar um curso presencial sobre o assunto',
+      objetivo: 1
     }
   ];
 
   constructor() { }
 
-  getObjetivos(): Meta[] {
-    return this.metas;
+  getMetas(idObjetivo: number): Meta[] {
+    let retorno: Meta[] = [];
+    for (let i = 0; i < this.metas.length; i++) {
+      if (this.metas[i].objetivo == idObjetivo) {
+        retorno.push(this.metas[i]);
+      }
+    }
+    return retorno;
   }
 
-  getObjetivo(id: number): Objetivo {
+  getMeta(id: number): Meta {
     for (let i = 0; i < this.metas.length; i++) {
       if (this.metas[i].id == id) {
         return this.metas[i];
