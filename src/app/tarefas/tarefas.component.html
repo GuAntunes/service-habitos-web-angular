@@ -1,0 +1,11 @@
+<p>tarefas works!</p>
+
+<!-- <a [routerLink]="['detalhes']">Detalhes</a><br/> -->
+<!-- <a routerLink='test'>Test</a> -->
+<a [routerLink]='[{ outlets: { secondRouter: ["detalhes"] } }]'>Test Second Route</a>
+
+<router-outlet></router-outlet>  
+
+<router-outlet name='secondRouter'></router-outlet>
+
+<!-- https://stackblitz.com/edit/angular-multi-router-outlet?file=app%2Fapp.component.ts -->
