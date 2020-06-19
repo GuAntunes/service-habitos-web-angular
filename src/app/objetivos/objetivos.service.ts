@@ -1,38 +1,48 @@
-import { MetasService } from './../metas/metas.service';
-import { Objetivo } from '../model/objetivo';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+import { environment } from 'src/environments/environment';
+import { Objetivo } from '../model/objetivo';
+import { take } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ObjetivosService {
 
-  private objetivos: Objetivo[] = [
-    {
-      id: 1,
-      nome: 'Ser um especialista em microservices',
-      descricao: 'Aprender com cursos online e presenciais a programar com microserviços',
-      metas: this.metasService.getMetas(1)
-    },
-    {
-      id: 2,
-      nome: 'Aprender um idioma',
-      descricao: 'Ser capaz de entender e falar um idioma estrangeiro'
-    }
-  ];
+  private readonly API = `${environment.API}/objetivos`;
 
-  constructor(private metasService: MetasService) { }
+  constructor(private http: HttpClient) { }
 
-  getObjetivos(): Objetivo[] {
-    return this.objetivos;
+  list() {
+    return this.http.get<Objetivo[]>(this.API)
+    .pipe(take(1));
   }
 
-  getObjetivo(id: number): Objetivo {
-    for (let i = 0; i < this.objetivos.length; i++) {
-      if (this.objetivos[i].id == id) {
-        return this.objetivos[i];
-      }
-    }
-    return null;
+  findOne(id: number) {
+    return this.http.get<Objetivo>(`${this.API}/${id}`)
+    .pipe(take(1));
   }
+
+  create(objetivo: Objetivo){
+    return this.http.post(this.API, objetivo)
+    .pipe(take(1));
+  }
+
+  private update(objetivo) {
+    return this.http.put(`${this.API}/${objetivo.id}`, objetivo).pipe(take(1));
+  }
+
+  save(curso) {
+    if (curso.id) {
+      return this.update(curso);
+    }
+    return this.create(curso);
+  }
+
+
+  remove(id) {
+    return this.http.delete(`${this.API}/${id}`).pipe(take(1));
+  }
+
 }

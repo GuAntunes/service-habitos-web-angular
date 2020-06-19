@@ -1,8 +1,10 @@
+import { TarefasDetalheComponent } from './tarefas/tarefas-detalhe/tarefas-detalhe.component';
 import { AuthGuard } from './guards/auth.guard';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { TarefasComponent } from './tarefas/tarefas.component';
 
 const APP_ROUTES: Routes = [
     {
@@ -23,6 +25,11 @@ const APP_ROUTES: Routes = [
         path: 'home',
         component: HomeComponent,
         canActivate: [AuthGuard]
+    },
+    {
+        path: 'tarefas',
+        loadChildren: () => import('./tarefas/tarefas.module').then(t => t.TarefasModule),
+        // canActivate: [AuthGuard]
     },
     { path: 'login', component: LoginComponent },
     { path: '', redirectTo: '/home', pathMatch: 'full' },

@@ -2,7 +2,7 @@
     <div class="col s6">
         <h5>Lista de Objetivos</h5>
 
-        <div class="collection">
+        <div class="collection" *ngIf="objetivos$ | async as objetivos;">
             <a *ngFor="let objetivo of objetivos" class="collection-item" [routerLink]="[objetivo.id]">
                 {{ objetivo.nome }}
             </a>

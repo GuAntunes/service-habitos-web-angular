@@ -25,7 +25,7 @@ export class MetasComponent implements OnInit {
         (params: any) => {
           let id = params['id'];
   
-          this.objetivo = this.objetivosService.getObjetivo(id);
+          // this.objetivo = this.objetivosService.getObjetivo(id);
 
         }
       );

@@ -1,3 +1,4 @@
+import { TarefasModule } from './tarefas/tarefas.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -8,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app.routing.module';
 import { AuthGuard } from './guards/auth.guard';
 import { AuthService } from './login/auth.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { AuthService } from './login/auth.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    TarefasModule,
+    HttpClientModule,
   ],
   providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]

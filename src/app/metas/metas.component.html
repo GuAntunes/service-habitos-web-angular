@@ -24,10 +24,12 @@
     <nav class="blue">
         <div class="nav-wrapper">
             <ul class="left hide-on-med-and-down">
-                <li routerLinkActive="active"><a>Tarefas</a></li>
+                <li routerLinkActive="active" [routerLink]="[{ outlets: { quadro: [''] } }]"><a>Tarefas</a></li>
                 <li routerLinkActive="active"><a>Motivações</a></li>
                 <li routerLinkActive="active"><a>Comentários</a></li>
             </ul>
         </div>
     </nav>
 </div>
+
+<router-outlet name="quadro"></router-outlet>

@@ -1,8 +1,9 @@
-import { ObjetivosService } from './../objetivos.service';
-import { Subscription } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
-import { Objetivo } from '../../model/objetivo';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import { ObjetivosService } from './../objetivos.service';
+import { map, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-objetivo-form',
@@ -11,24 +12,55 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ObjetivoFormComponent implements OnInit {
 
-  objetivo: Objetivo;
-  inscricao: Subscription;
+  form: FormGroup;
 
-  constructor(private route: ActivatedRoute,
-    private objetivoService: ObjetivosService) { }
+  constructor(
+    private fb: FormBuilder, 
+    private router: Router,
+    private service: ObjetivosService,
+    private route: ActivatedRoute
+    ) { }
 
   ngOnInit(): void {
-    this.inscricao = this.route.params.subscribe(
-      (params: any) => {
-        let id = params['id'];
 
-        this.objetivo = this.objetivoService.getObjetivo(id);
+    this.route.params
+    .pipe(
+      map((params: any) => params['id']),
+      switchMap(id => {
+        return this.service.findOne(id);
+      })
+    )
+    .subscribe(
+      (objetivo) =>  this.updateForm(objetivo));
 
-        if(this.objetivo === null){
-          this.objetivo = {};
-        }
-      }
-    );
+      this.form = this.fb.group({
+        id: [null],
+        nome: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(250)]],
+        descricao: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(500)]]
+      });
   }
 
+  onSubmit() {
+    console.log(this.form.value);
+    if(this.form.valid){
+      this.service.save(this.form.value).subscribe(
+        success => {
+          // console.log(this.modal.showAlertSuccess("Criado com sucesso!"));
+          // this.location.back();
+          this.router.navigate(['/objetivos']);
+        },
+        // error => this.modal.showAlertDanger('Erro ao criar curso, tente novamente!'),
+        () => console.log('request completo')
+      );
+    }
+  }
+
+
+  updateForm(objetivo) {
+    this.form.patchValue({
+      id: objetivo.id,
+      nome: objetivo.nome,
+      descricao: objetivo.descricao
+    })
+  }
 }

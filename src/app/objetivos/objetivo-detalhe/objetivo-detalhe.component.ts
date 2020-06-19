@@ -1,7 +1,7 @@
 import { ObjetivosService } from './../objetivos.service';
 import { Component, OnInit } from '@angular/core';
 import { Objetivo } from '../../model/objetivo';
-import { Subscription } from 'rxjs';
+import { Subscription, Observer, Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -11,7 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ObjetivoDetalheComponent implements OnInit {
   
-  objetivo: Objetivo;
+  objetivo$: Observable<Objetivo>;
   inscricao: Subscription;
 
   constructor(private route: ActivatedRoute,
@@ -23,17 +23,22 @@ export class ObjetivoDetalheComponent implements OnInit {
         (params: any) => {
           let id = params['id'];
   
-          this.objetivo = this.objetivosService.getObjetivo(id);
+          this.objetivo$ = this.objetivosService.findOne(id);
         }
       );
   }
 
   editarObjetivo(){
-    this.router.navigate(['/objetivos', this.objetivo.id, 'editar']);
+    this.router.navigate(['editar'], { relativeTo: this.route });
+  }
+
+  deletarObjetivo(id){
+    console.log(id);
+    this.objetivosService.remove(id);
   }
 
   carregarMetas(){
-    this.router.navigate(['/metas/objetivo/', this.objetivo.id]);
+    // this.router.navigate(['/metas/objetivo/', this.objetivo.id]);
   }
 
 }

@@ -1,8 +1,19 @@
 <h5>Detalhes do Objetivo</h5>
+<div *ngIf="objetivo$ | async as objetivo">
+  <p><b>Id:</b> {{ objetivo.id }}</p>
+  <p><b>Nome:</b> {{ objetivo.nome }}</p>
+  <p><b>Descrição:</b> {{ objetivo.descricao }}</p>
 
-<p><b>Id:</b> {{ objetivo.id }}</p>
-<p><b>Nome:</b> {{ objetivo.nome }}</p>
-<p><b>Descrição:</b> {{ objetivo.descricao }}</p>
-
-<a class="waves-effect waves-light btn" (click)="editarObjetivo()">Editar</a>
-<a class="waves-effect waves-light btn blue" [style.margin-left.px]="10" (click)="carregarMetas()">Metas</a>
+  <a class="waves-effect waves-light btn" (click)="editarObjetivo()">Editar</a>
+  <a
+    class="waves-effect waves-light btn red"
+    [style.margin-left.px]="10"
+    (click)="deletarObjetivo(objetivo.id)"
+    >Deletar</a>
+  <a
+    class="waves-effect waves-light btn blue"
+    [style.margin-left.px]="10"
+    (click)="carregarMetas()"
+    >Metas</a
+  >
+</div>
