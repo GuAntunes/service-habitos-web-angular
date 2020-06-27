@@ -1,3 +1,4 @@
+import { ObjetivoDetalheResolver } from './guard/objetivo-detalhe.resolver';
 import { ObjetivosComponent } from './objetivos.component';
 import { ObjetivosRoutingModule } from './objetivos.routing.module';
 import { NgModule } from '@angular/core';
@@ -15,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ObjetivosRoutingModule,
     FormsModule,
     ReactiveFormsModule
-  ]
+  ],
+  providers: [ObjetivoDetalheResolver]
 })
 export class ObjetivosModule { }

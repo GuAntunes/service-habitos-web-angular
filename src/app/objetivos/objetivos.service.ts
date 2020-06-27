@@ -42,6 +42,7 @@ export class ObjetivosService {
 
 
   remove(id) {
+    console.log(`${this.API}/${id}`)
     return this.http.delete(`${this.API}/${id}`).pipe(take(1));
   }
 

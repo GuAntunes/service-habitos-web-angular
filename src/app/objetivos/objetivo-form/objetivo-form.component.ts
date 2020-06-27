@@ -41,7 +41,6 @@ export class ObjetivoFormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.form.value);
     if(this.form.valid){
       this.service.save(this.form.value).subscribe(
         success => {
