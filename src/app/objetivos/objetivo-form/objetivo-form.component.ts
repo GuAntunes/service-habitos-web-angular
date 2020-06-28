@@ -1,3 +1,4 @@
+import { AlertToastService } from './../../shared/alert-toast.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -19,10 +20,11 @@ export class ObjetivoFormComponent implements OnInit {
     private router: Router,
     private service: ObjetivosService,
     private route: ActivatedRoute,
+    private toast: AlertToastService
     ) { }
 
   ngOnInit(): void {
-
+    
     this.route.params
     .pipe(
       map((params: any) => params['id']),
@@ -44,11 +46,10 @@ export class ObjetivoFormComponent implements OnInit {
     if(this.form.valid){
       this.service.save(this.form.value).subscribe(
         success => {
-          // console.log(this.modal.showAlertSuccess("Criado com sucesso!"));
-          // this.location.back();
+          this.toast.showAlertSuccess("Objetivo criado/alterado com sucesso!");
           this.router.navigate(['/objetivos']);
         },
-        // error => this.modal.showAlertDanger('Erro ao criar curso, tente novamente!'),
+        error => this.toast.showAlertDanger('Erro ao criar/alterar curso, tente novamente!'),
         () => console.log('request completo')
       );
     }

@@ -1,3 +1,4 @@
+import { AlertToastService } from './../../shared/alert-toast.service';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -12,13 +13,14 @@ import { ObjetivosService } from './../objetivos.service';
 export class ObjetivoDetalheComponent implements OnInit {
   @Input() objetivo: Objetivo;
   @Output() refresh = new EventEmitter();
-  
+
   // inscricao: Subscription;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private objetivosService: ObjetivosService
+    private objetivosService: ObjetivosService,
+    private toast: AlertToastService
   ) {}
 
   ngOnInit(): void {
@@ -37,8 +39,9 @@ export class ObjetivoDetalheComponent implements OnInit {
 
   deletarObjetivo(id) {
     this.objetivosService.remove(id).subscribe((success) => {
+      this.toast.showAlertSuccess('Objetivo deletado com sucesso!');
       this.refresh.emit();
-    });
+    },(error) => this.toast.showAlertDanger('Erro ao deletar curso, tente novamente!'));
   }
 
   carregarMetas() {

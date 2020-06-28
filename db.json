@@ -4,6 +4,18 @@
       "id": 1,
       "nome": "Ser um especialista em microservices.",
       "descricao": "Aprender com cursos online e presenciais a programar com microserviçostete"
+    },
+    {
+      "id": 3,
+      "nome": "Ser rico",
+      "descricao": "dinheiro, mulhere, dinheiro, mansões"
+    }
+  ],
+  "metas": [
+    {
+      "id": 1,
+      "nome": "Meta 01",
+      "descricao": "Descrição meta 01"
     }
   ]
 }

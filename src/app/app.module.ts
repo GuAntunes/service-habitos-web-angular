@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app.routing.module';
 import { AuthGuard } from './guards/auth.guard';
 import { AuthService } from './login/auth.service';
 import { HttpClientModule } from '@angular/common/http';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     TarefasModule,
     HttpClientModule,
+    SharedModule
   ],
   providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]

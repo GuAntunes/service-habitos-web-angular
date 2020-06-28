@@ -22,5 +22,9 @@
       [objetivo]="currentObjetivo"
       (refresh)="onRefresh($event)"
     ></app-objetivo-detalhe>
+    <div *ngIf="!currentObjetivo">
+        <br />
+        <p>Por favor selecione um objetivo...</p>
+      </div>
   </div>
 </div>
