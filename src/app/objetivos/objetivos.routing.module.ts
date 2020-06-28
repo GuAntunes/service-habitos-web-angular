@@ -10,21 +10,19 @@ const OBJETIVOS_ROUTES: Routes = [
   {
     path: '',
     component: ObjetivosComponent,
-    children: [
-      {
-        path: 'novo',
-        component: ObjetivoFormComponent,
-      },
-      {
-        path: ':id',
-        component: ObjetivoDetalheComponent,
-        resolve: { objetivo: ObjetivoDetalheResolver },
-      },
-      {
-        path: ':id/editar',
-        component: ObjetivoFormComponent,
-      },
-    ],
+  },
+  {
+    path: 'novo',
+    component: ObjetivoFormComponent,
+  },
+  {
+    path: ':id',
+    component: ObjetivoDetalheComponent,
+    resolve: { objetivo: ObjetivoDetalheResolver },
+  },
+  {
+    path: ':id/editar',
+    component: ObjetivoFormComponent,
   },
 ];
 

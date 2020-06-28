@@ -1,5 +1,5 @@
 import { Router, ActivatedRoute } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { ObjetivosService } from './../objetivos.service';
@@ -18,7 +18,7 @@ export class ObjetivoFormComponent implements OnInit {
     private fb: FormBuilder, 
     private router: Router,
     private service: ObjetivosService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
     ) { }
 
   ngOnInit(): void {

@@ -1,15 +1,22 @@
 <div class="row">
-    <div class="col s6">
-        <h5>Lista de Objetivos</h5>
+  <div class="col s6">
+    <h5>Lista de Objetivos</h5>
 
-        <div class="collection" *ngIf="objetivos$ | async as objetivos;">
-            <a *ngFor="let objetivo of objetivos" class="collection-item" [routerLink]="[objetivo.id]">
-                {{ objetivo.nome }}
-            </a>
-        </div>
-        <a class="waves-effect waves-light btn blue" routerLink="/objetivos/novo">Novo</a>
+    <div class="collection" *ngIf="objetivos$ | async as objetivos">
+      <a
+        *ngFor="let objetivo of objetivos; let i = index"
+        class="collection-item"
+        [class.active]="i == currentIndex"
+        (click)="setActiveObjetivo(objetivo, i)"
+      >
+        {{ objetivo.nome }}
+      </a>
     </div>
-    <div class="col s6">
-        <router-outlet></router-outlet>
-    </div>
+    <a class="waves-effect waves-light btn blue" routerLink="/objetivos/novo"
+      >Novo</a
+    >
+  </div>
+  <div class="col s6">
+    <app-objetivo-detalhe [objetivo]="currentObjetivo" ></app-objetivo-detalhe>
+  </div>
 </div>

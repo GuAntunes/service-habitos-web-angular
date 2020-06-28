@@ -1,8 +1,10 @@
-import { ObjetivosService } from './../objetivos.service';
-import { Component, OnInit } from '@angular/core';
-import { Objetivo } from '../../model/objetivo';
+import { Component, OnInit, Input } from '@angular/core';
 import { Subscription, Observer, Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
+
+import { Objetivo } from '../../model/objetivo';
+import { ObjetivosComponent } from './../objetivos.component';
+import { ObjetivosService } from './../objetivos.service';
 
 @Component({
   selector: 'app-objetivo-detalhe',
@@ -10,21 +12,22 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./objetivo-detalhe.component.css'],
 })
 export class ObjetivoDetalheComponent implements OnInit {
-  objetivo: Objetivo;
-  inscricao: Subscription;
+ 
+  @Input() objetivo: Objetivo;
+  // inscricao: Subscription;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private objetivosService: ObjetivosService
+    private objetivosService: ObjetivosService,
   ) {}
 
   ngOnInit(): void {
-    this.inscricao = this.route.data.subscribe(
-      (info: { objetivo: Objetivo }) => {
-        this.objetivo = info.objetivo;
-      }
-    );
+    // this.inscricao = this.route.data.subscribe(
+    //   (info: { objetivo: Objetivo }) => {
+    //     this.objetivo = info.objetivo;
+    //   }
+    // );
   }
 
   editarObjetivo() {
@@ -41,7 +44,7 @@ export class ObjetivoDetalheComponent implements OnInit {
     // this.router.navigate(['/metas/objetivo/', this.objetivo.id]);
   }
 
-  ngOnDestroy() {
-    this.inscricao.unsubscribe();
-  }
+  // ngOnDestroy() {
+  //   this.inscricao.unsubscribe();
+  // }
 }
