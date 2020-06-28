@@ -17,6 +17,10 @@
     >
   </div>
   <div class="col s6">
-    <app-objetivo-detalhe [objetivo]="currentObjetivo" ></app-objetivo-detalhe>
+    <app-objetivo-detalhe
+      *ngIf="currentObjetivo"
+      [objetivo]="currentObjetivo"
+      (refresh)="onRefresh($event)"
+    ></app-objetivo-detalhe>
   </div>
 </div>

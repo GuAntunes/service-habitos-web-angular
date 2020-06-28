@@ -4,21 +4,6 @@
       "id": 1,
       "nome": "Ser um especialista em microservices.",
       "descricao": "Aprender com cursos online e presenciais a programar com microserviçostete"
-    },
-    {
-      "id": 3,
-      "nome": "Saude do corpo e mente teste",
-      "descricao": "Realizar exercicios e habitos pensando em um corpo em forma"
-    },
-    {
-      "id": 5,
-      "nome": "teste",
-      "descricao": "testete"
-    },
-    {
-      "id": 6,
-      "nome": "Teste Update",
-      "descricao": "update desc"
     }
   ]
 }

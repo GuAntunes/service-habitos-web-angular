@@ -1,9 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Subscription, Observer, Observable } from 'rxjs';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Objetivo } from '../../model/objetivo';
-import { ObjetivosComponent } from './../objetivos.component';
 import { ObjetivosService } from './../objetivos.service';
 
 @Component({
@@ -12,14 +10,15 @@ import { ObjetivosService } from './../objetivos.service';
   styleUrls: ['./objetivo-detalhe.component.css'],
 })
 export class ObjetivoDetalheComponent implements OnInit {
- 
   @Input() objetivo: Objetivo;
+  @Output() refresh = new EventEmitter();
+  
   // inscricao: Subscription;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private objetivosService: ObjetivosService,
+    private objetivosService: ObjetivosService
   ) {}
 
   ngOnInit(): void {
@@ -31,12 +30,14 @@ export class ObjetivoDetalheComponent implements OnInit {
   }
 
   editarObjetivo() {
-    this.router.navigate(['editar'], { relativeTo: this.route });
+    if (this.objetivo) {
+      this.router.navigate(['objetivos', this.objetivo.id, 'editar']);
+    }
   }
 
   deletarObjetivo(id) {
     this.objetivosService.remove(id).subscribe((success) => {
-      // this.onRefresh();
+      this.refresh.emit();
     });
   }
 

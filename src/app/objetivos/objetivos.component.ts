@@ -33,4 +33,10 @@ export class ObjetivosComponent implements OnInit {
     this.currentObjetivo = objetivo;
     this.currentIndex = index;
   }
+
+  onRefresh(evento){
+    this.currentObjetivo = evento?.id;
+    this.currentIndex = -1;
+    this.listarObjetivos(); 
+  }
 }
