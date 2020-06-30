@@ -1,24 +1,34 @@
 <h5>
-    Criar/Editar Meta
+  Criar/Editar Meta
 </h5>
 
-<div class="col s12">
+<form [formGroup]="form">
+  <input id="objetivo" formControlName="objetivo" class="validate" type="hidden"/>
+  <div class="col s12">
     <div class="row">
-        <div class="input-field col s12">
-            <input disabled id="disabled" [(ngModel)]="meta.id" type="text">
-            <label for="disabled" class="active">#</label>
-        </div>
+      <div class="input-field col s12">
+        <input disabled id="disabled" formControlName="id"  type="text" />
+        <label for="disabled" class="active">#</label>
+      </div>
     </div>
     <div class="row">
-        <div class="input-field col s12">
-            <input id="nome" [(ngModel)]="meta.nome" class="validate">
-            <label for="nome" class="active">Nome</label>
-        </div>
+      <div class="input-field col s12">
+        <input id="nome" formControlName="nome" class="validate" />
+        <label for="nome" class="active">Nome</label>
+      </div>
     </div>
     <div class="row">
-        <div class="input-field col s12">
-            <textarea id="descricao" [(ngModel)]="meta.descricao" class="materialize-textarea"></textarea>
-            <label for="descricao" class="active">Descrição</label>
-        </div>
+      <div class="input-field col s12">
+        <textarea
+          id="descricao"
+          formControlName="descricao"
+          class="materialize-textarea"
+        ></textarea>
+        <label for="descricao" class="active">Descrição</label>
+      </div>
     </div>
-</div>
+    <a class="waves-effect waves-light btn blue" (click)="onSubmit()"
+    >Salvar</a
+  >
+  </div>
+</form>

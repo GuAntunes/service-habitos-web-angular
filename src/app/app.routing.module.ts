@@ -17,9 +17,9 @@ const APP_ROUTES: Routes = [
     {
         path: 'metas',
         loadChildren: () => import('./metas/metas.module').then(m => m.MetasModule),
-        // canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         // canActivateChild: [CursosGuard],
-        // canLoad: [AuthGuard]
+        canLoad: [AuthGuard]
     },
     {
         path: 'home',

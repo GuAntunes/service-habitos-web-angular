@@ -1,45 +1,47 @@
-import { Meta } from './../model/meta';
-import { Objetivo } from '../model/objetivo';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+import { environment } from 'src/environments/environment';
+import { take } from 'rxjs/operators';
+import { Meta } from '../model/meta';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MetasService {
 
-  private metas: Meta[] = [
-    {
-      id: 1,
-      nome: 'Realizar um curso na Udemy',
-      descricao: 'Realizar o curso X',
-      objetivo: 1
-    },
-    {
-      id: 2,
-      nome: 'Realizar um curso presencial na Caelum',
-      descricao: 'Realizar um curso presencial sobre o assunto',
-      objetivo: 1
-    }
-  ];
+  private readonly API = `${environment.API}/metas`;
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  getMetas(idObjetivo: number): Meta[] {
-    let retorno: Meta[] = [];
-    for (let i = 0; i < this.metas.length; i++) {
-      if (this.metas[i].objetivo == idObjetivo) {
-        retorno.push(this.metas[i]);
-      }
-    }
-    return retorno;
+  list() {
+    return this.http.get<Meta[]>(this.API)
+    .pipe(take(1));
   }
 
-  getMeta(id: number): Meta {
-    for (let i = 0; i < this.metas.length; i++) {
-      if (this.metas[i].id == id) {
-        return this.metas[i];
-      }
+  findOne(id: number) {
+    return this.http.get<Meta>(`${this.API}/${id}`)
+    .pipe(take(1));
+  }
+
+  create(meta: Meta){
+    return this.http.post(this.API, meta)
+    .pipe(take(1));
+  }
+
+  private update(meta) {
+    return this.http.patch(`${this.API}/${meta.id}`, meta).pipe(take(1));
+  }
+
+  save(meta) {
+    if (meta.id) {
+      return this.update(meta);
     }
-    return null;
+    return this.create(meta);
+  }
+
+
+  remove(id) {
+    return this.http.delete(`${this.API}/${id}`).pipe(take(1));
   }
 }

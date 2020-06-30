@@ -45,7 +45,7 @@ export class ObjetivoDetalheComponent implements OnInit {
   }
 
   carregarMetas() {
-    // this.router.navigate(['/metas/objetivo/', this.objetivo.id]);
+    this.router.navigate(['/metas'], { queryParams: { objetivo: this.objetivo.id } });
   }
 
   // ngOnDestroy() {

@@ -3,7 +3,26 @@
     {
       "id": 1,
       "nome": "Ser um especialista em microservices.",
-      "descricao": "Aprender com cursos online e presenciais a programar com microserviçostete"
+      "descricao": "Aprender com cursos online e presenciais a programar com microserviçostete",
+      "metas": [
+        {
+          "id": 1,
+          "nome": "Meta 01",
+          "descricao": "Descrição meta 01"
+        },
+        {
+          "id": 4,
+          "nome": "Meta 03",
+          "descricao": "descricao",
+          "objetivo": "1"
+        },
+        {
+          "id": 5,
+          "nome": "TESTES",
+          "descricao": "ASDFASDF",
+          "objetivo": "1"
+        }
+      ]
     },
     {
       "id": 3,
@@ -15,7 +34,32 @@
     {
       "id": 1,
       "nome": "Meta 01",
-      "descricao": "Descrição meta 01"
+      "descricao": "Descrição meta 01",
+      "objetivo": 1
+    },
+    {
+      "id": 2,
+      "nome": "Meta 02",
+      "descricao": "meta desc",
+      "objetivo": null
+    },
+    {
+      "id": 3,
+      "nome": "Meta 02",
+      "descricao": "Teste Meta 02",
+      "objetivo": null
+    },
+    {
+      "id": 4,
+      "nome": "Meta 03",
+      "descricao": "descricao",
+      "objetivo": "1"
+    },
+    {
+      "id": 5,
+      "nome": "Meta id 5",
+      "descricao": "ASDFASDF",
+      "objetivo": "1"
     }
   ]
 }

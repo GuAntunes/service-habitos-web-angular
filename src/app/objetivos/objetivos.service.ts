@@ -33,16 +33,15 @@ export class ObjetivosService {
     return this.http.put(`${this.API}/${objetivo.id}`, objetivo).pipe(take(1));
   }
 
-  save(curso) {
-    if (curso.id) {
-      return this.update(curso);
+  save(objetivo) {
+    if (objetivo.id) {
+      return this.update(objetivo);
     }
-    return this.create(curso);
+    return this.create(objetivo);
   }
 
 
   remove(id) {
-    console.log(`${this.API}/${id}`)
     return this.http.delete(`${this.API}/${id}`).pipe(take(1));
   }
 

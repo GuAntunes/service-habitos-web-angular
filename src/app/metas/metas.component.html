@@ -1,35 +1,50 @@
 <h5>Objetivo</h5>
-<p><b>Id:</b> {{ objetivo.id }}</p>
-<p><b>Nome:</b> {{ objetivo.nome }}</p>
-<p><b>Descrição:</b> {{ objetivo.descricao }}</p>
+<div *ngIf="objetivo$ | async as objetivo">
+  <p><b>Id:</b> {{ objetivo.id }}</p>
+  <p><b>Nome:</b> {{ objetivo.nome }}</p>
+  <p><b>Descrição:</b> {{ objetivo.descricao }}</p>
 
-<div class="row">
+  <div class="row">
     <div class="col s6">
-        <h5>Metas</h5>
+      <h5>Metas</h5>
 
-        <div class="collection">
-            <a *ngFor="let meta of objetivo.metas" class="collection-item"
-                (click)="carregarMeta(meta.id, meta.objetivo)">
-                {{ meta.nome }}
-            </a>
-        </div>
-        <a class="waves-effect waves-light btn blue" routerLink="/metas/novo">Novo</a>
+      <div class="collection">
+        <a
+          *ngFor="let meta of objetivo.metas; let i = index"
+          class="collection-item"
+          [class.active]="i == currentIndex"
+          (click)="setActiveMeta(meta, i)"
+        >
+          {{ meta.nome }}
+        </a>
+      </div>
+      <a class="waves-effect waves-light btn blue" (click)="novaMeta()"
+        >Novo</a
+      >
     </div>
     <div class="col s6">
-        <router-outlet></router-outlet>
+      <app-meta-detalhe
+        *ngIf="currentMeta"
+        [meta]="currentMeta"
+      ></app-meta-detalhe>
     </div>
-</div>
+  </div>
 
-<div class="row" *ngIf="submenu">
+  <div class="row" *ngIf="submenu">
     <nav class="blue">
-        <div class="nav-wrapper">
-            <ul class="left hide-on-med-and-down">
-                <li routerLinkActive="active" [routerLink]="[{ outlets: { quadro: [''] } }]"><a>Tarefas</a></li>
-                <li routerLinkActive="active"><a>Motivações</a></li>
-                <li routerLinkActive="active"><a>Comentários</a></li>
-            </ul>
-        </div>
+      <div class="nav-wrapper">
+        <ul class="left hide-on-med-and-down">
+          <li
+            routerLinkActive="active"
+            [routerLink]="[{ outlets: { quadro: [''] } }]"
+          >
+            <a>Tarefas</a>
+          </li>
+          <li routerLinkActive="active"><a>Motivações</a></li>
+          <li routerLinkActive="active"><a>Comentários</a></li>
+        </ul>
+      </div>
     </nav>
+  </div>
 </div>
-
 <router-outlet name="quadro"></router-outlet>
